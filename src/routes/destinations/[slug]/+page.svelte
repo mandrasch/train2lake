@@ -1,5 +1,5 @@
 <script>
-	import GutenbergBlockContent from '../../components/GutenbergBlockContent.svelte';
+	import GutenbergBlockContent from '../../../components/GutenbergBlockContent.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data; // from server side
@@ -18,6 +18,8 @@
 <div class="gutenberg-wrapper-container">
 	<div class="gutenberg-wrapper-container__title">
 		<h2>{entry.title.rendered}</h2>
+
+		<p>{entry.acf?.destination_teaser_text}</p>
 	</div>
 	<div class="gutenberg-wrapper-container__wp-block-post-content">
 		{#if entry.hasOwnProperty('content')}

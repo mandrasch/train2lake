@@ -1,6 +1,7 @@
 <script>
 	import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public';
 	import { base } from '$app/paths';
+	import { fade,fly } from 'svelte/transition';
 	// TODO: Add full jsdoc / typescript type checking
 	/** @type {Array<any>}; */
 	export let posts;
@@ -8,13 +9,19 @@
 
 <!-- TODO: How to properly implement this in a fail safe way? -->
 {#if posts && posts.length > 0}
+
 	<div class="posts">
 		{#each posts as post, index (post.id)}
-			<a href={'' + post.slug}>
+			<!-- Too many preloads were triggered https://kit.svelte.dev/docs/link-options -->
+			<a
+				data-sveltekit-preload-data="tap"
+				href={'/destinations/' + post.slug}
+				transition:fade 
+			>
 				<div class="card">
 					<!-- TODO: use responsive image sizes -->
 					<!-- TODO: get alt text from REST API! -->
-					{#if post.hasOwnProperty("_embedded") && post._embedded.hasOwnProperty('wp:featuredmedia')}
+					{#if post.hasOwnProperty('_embedded') && post._embedded.hasOwnProperty('wp:featuredmedia')}
 						<img
 							src={post._embedded['wp:featuredmedia']['0'].source_url}
 							class="card__image"
@@ -29,19 +36,15 @@
 			</a>
 		{/each}
 	</div>
-	<small style="font-size:12px;"
-		>Design: Fork of <a href="https://codepen.io/HenrikFricke/pen/GRNYrXK"
-			>Codepen by Henrik Fricke</a
-		></small
-	>
 {:else}
-	<p>No posts in WordPress yet.</p>
+	<p>No posts yet. :(</p>
 {/if}
 
 <style lang="scss">
 	// Fork of https://codepen.io/HenrikFricke/pen/GRNYrXK by HenrikFricke,
 	// thanks very much for sharing this awesome example!
 
+	// Mix in for easier media queries
 	@mixin mediaBig {
 		@media (min-width: 576px) {
 			@content;
@@ -74,8 +77,10 @@
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
 
+		min-height:75vh;
+
 		@include mediaBig {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(1, 1fr);
 		}
 	}
 
@@ -84,7 +89,7 @@
 	}
 
 	.card {
-		max-width: 960px;
+		// max-width: 960px;
 		border-radius: var(--border-radius-primary);
 		box-shadow: 24px 24px 80px rgba(0, 0, 0, 0.1);
 		padding: 20px 20px 28px 20px;
@@ -123,7 +128,7 @@
 		}
 	}
 
-	.card__date {
+	/*.card__date {
 		display: block;
 		font-family: var(--font-family-secondary);
 		font-size: var(--font-size-caption);
@@ -135,7 +140,7 @@
 		@include mediaBig {
 			margin-bottom: 8px;
 		}
-	}
+	}*/
 
 	.card__title {
 		font-family: var(--font-family-primary);

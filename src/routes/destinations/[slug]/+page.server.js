@@ -7,10 +7,9 @@ import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public'
 export const load = async ({ params }) => {
     try {
 
-
-        // TODO: we only need to look for pages (or posts here ...), change this back
-
         console.log('[slug/+page.server.js] Requesting pages and posts for slug:', params.slug);
+
+        // TODO: we only need to check for destinations here ...
 
         // TODO: create own api endpoint or use /search or similiar to search in multiple post types
         // (or use array for more efficiency)
