@@ -1,6 +1,4 @@
 import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public'
-import { error } from '@sveltejs/kit';
-
 
 // TODO: Better (and general) error handling! 
 
@@ -11,22 +9,26 @@ export const load = async ({ params }) => {
 
         console.log('[slug/+page.server.js] Requesting pages and posts for slug:', params.slug);
 
+        // TODO: create own api endpoint or use /search or similiar to search in multiple post types
+        // (or use array for more efficiency)
+
         // https://scottspence.com/posts/fetch-data-from-two-or-more-endpoints-in-svelte
-        console.log('[slug/+page.server.js] Requesting:', `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/pages?slug=${params.slug}`);
-        console.log('[slug/+page.server.js] Requesting:', `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/posts?slug=${params.slug}`);
-        const [pagesReq, postsReq] = await Promise.all([
-            fetch(`${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/pages?slug=${params.slug}`),
-            fetch(`${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/posts?slug=${params.slug}`),
+
+        const reqUrlPages = `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/pages?slug=${params.slug}`;
+        const reqUrlDestinations =  `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/destination?slug=${params.slug}`
+        console.log('[slug/+page.server.js] Requesting:',{reqUrlPages,reqUrlDestinations} );
+        const [pagesReq, destinationsReq] = await Promise.all([
+            fetch(reqUrlPages),
+            fetch(reqUrlDestinations),
         ]);
 
-        console.log('Received', { pagesReqStatus: pagesReq.status, postsReqStatus: postsReq.status });
+        console.log('Received', { pagesReqStatus: pagesReq.status, postsReqStatus: destinationsReq.status });
 
-
-        if (!pagesReq.ok || !postsReq.ok) {
+        if (!pagesReq.ok || !destinationsReq.ok) {
             // TODO: error handling needed? or covered by try/catch?
             // https://kit.svelte.dev/docs/errors
             console.error("Error in fetches, at least one fetch returned other status code than 200!");
-            [pagesReq, postsReq].forEach(async (req) => {
+            [pagesReq, destinationsReq].forEach(async (req) => {
                 if (!req.ok) {
                     const errorMessageText = await req.json(); // TODO: always json?!
                     console.error('Request failed:', { req, errorMessageText });
@@ -36,21 +38,21 @@ export const load = async ({ params }) => {
         }
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
-        let pages, posts = [];
+        let pages, destinations = [];
         if (pagesReq.ok) {
             pages = await pagesReq.json();
         }
-        if (postsReq.ok) {
-            posts = await postsReq.json();
+        if (destinationsReq.ok) {
+            destinations = await destinationsReq.json();
         }
         // console.log({ pages, posts })
 
         if (pages.length > 0) {
             return { entries: pages };
-        } else if (posts.length > 0) {
-            return { entries: posts };
+        } else if (destinations.length > 0) {
+            return { entries: destinations };
         } else {
-            console.log('No entries (post/pages) found...');
+            console.log('No entries (destionations/pages) found...');
             return { entries: [] }  // TODO: what is the best way to cover this case (not found)?
         }
     } catch (error) {

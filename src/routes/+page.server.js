@@ -1,6 +1,7 @@
 import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public'
 
-// TODO: Better error handling!
+// TODO: Better error handling + display of errors
+// TODO: generalize this into a shared function
 
 // https://rodneylab.com/using-fetch-sveltekit/
 /** @type {import('./$types').PageServerLoad} */
@@ -10,8 +11,9 @@ export const load = async () => {
             baseCurrency: 'EUR',
             quoteCurrencies: ['CAD', 'GBP', 'IDR', 'INR', 'USD']
         };*/
-        console.log('Requesting: ', `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/posts?_embed`);
-        const response = await fetch(`${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/posts?_embed`);
+        const apiReqUrl = `${PUBLIC_WP_REST_API_DOMAIN}/wp-json/wp/v2/destination?_embed`
+        console.log('Requesting:', apiReqUrl);
+        const response = await fetch(apiReqUrl);
         const posts = await response.json();
         return { posts };
     } catch (error) {

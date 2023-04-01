@@ -1,8 +1,8 @@
 <script>
 	import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public';
 	import { base } from '$app/paths';
-	// TODO: add jsdoc array of objects
-	// @type {array};
+	// TODO: Add full jsdoc / typescript type checking
+	/** @type {Array<any>}; */
 	export let posts;
 </script>
 
@@ -14,17 +14,16 @@
 				<div class="card">
 					<!-- TODO: use responsive image sizes -->
 					<!-- TODO: get alt text from REST API! -->
-					{#if post._embedded.hasOwnProperty('wp:featuredmedia')}
+					{#if post.hasOwnProperty("_embedded") && post._embedded.hasOwnProperty('wp:featuredmedia')}
 						<img
 							src={post._embedded['wp:featuredmedia']['0'].source_url}
 							class="card__image"
-							alt="brown couch"
+							alt=""
 						/>
 					{/if}
 					<div class="card__content">
-						<!-- TODO: Get date/time -->
-						<time datetime="2021-03-30" class="card__date">30 März 2021</time>
-						<span class="card__title"> {post.title.rendered}<span /></span>
+						<span class="card__title"> {post.title.rendered}</span>
+						<p>{post.acf?.destination_teaser_text}</p>
 					</div>
 				</div>
 			</a>
