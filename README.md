@@ -2,15 +2,15 @@
 
 SvelteKit demo site for headless CMS setup with WP + WP REST API.
 
-⚠️ Content is fetched from WordPress demo backend XXX. Please use your own backend if you run big tests. The backend API URL can be configured in `.env`-file.
-
 ## Local setup
 
 ```bash
 npm install
-npm run dev -- --open
 # Copy .env.example to .env
+npm run dev -- --open
 ```
+
+⚠️ Content is fetched from my WordPress demo backend XXX. Please use your own backend if you run big tests. The backend API URL can be configured in `.env`-file.
 
 ## Local backend instead of live site (optional)
 
@@ -29,6 +29,9 @@ PUBLIC_WP_REST_API_DOMAIN=https://sveltekit-headless-wp-rest-demo.ddev.site
 npm create svelte@latest .
 npm i
 
+# Prettier support for svelte
+npm i -D prettier-plugin-svelte prettier
+
 # Add picocss + SCSS https://joyofcode.xyz/using-pico-css-with-svelte
 npm i -D @picocss/pico sass svelte-preprocess
 
@@ -38,4 +41,4 @@ npm i -D @wordpress/block-library --save
 
 ## License
 
-Fork of https://github.com/mandrasch/sveltekit-headless-wp-rest-demo
+Fork of https://github.com/mandrasch/sveltekit-headless-wp-rest-demo.
