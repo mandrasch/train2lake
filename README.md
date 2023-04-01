@@ -1,6 +1,8 @@
 # train2lake
 
-SvelteKit demo site for headless CMS setup with WP + WP REST API.
+SvelteKit demo site for headless CMS setup with WP + WP REST API. Just for learning / demo purposes.
+
+TODO: Screenshot
 
 ## Local setup
 
@@ -39,6 +41,15 @@ npm i -D @picocss/pico sass svelte-preprocess
 npm i -D @wordpress/block-library --save
 ```
 
+## Deployment
+
+- Add `.env` values on Vercel
+
+## Acknowledgements
+
+Inspired by Bahn zum Berg, check out zuugle.at as well!
+
 ## License
 
 Fork of https://github.com/mandrasch/sveltekit-headless-wp-rest-demo.
+
