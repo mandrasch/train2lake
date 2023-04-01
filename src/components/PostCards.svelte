@@ -16,7 +16,7 @@
 			<a
 				data-sveltekit-preload-data="tap"
 				href={'/destinations/' + post.slug}
-				transition:fade 
+				out:fade 
 			>
 				<div class="card">
 					<!-- TODO: use responsive image sizes -->
