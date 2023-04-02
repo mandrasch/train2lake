@@ -35,6 +35,7 @@
 		grid-column-gap: 20px;
 		grid-row-gap: 20px;
 		min-height: 70vh;
+		max-width: 1450px;
 
 		& > * {
 			border-radius: 10px;
