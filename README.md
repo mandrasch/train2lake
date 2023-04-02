@@ -2,7 +2,7 @@
 
 SvelteKit demo site for headless CMS setup with WP + WP REST API. Just for learning / demo purposes.
 
-![Screenshot of website](screenshot1.png?raw=true)
+![Screenshot of website](screenshot1.jpg?raw=true)
 
 Live: https://train2lake.vercel.app/
 
