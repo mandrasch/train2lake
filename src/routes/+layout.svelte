@@ -15,3 +15,9 @@
 	<slot />
 </main>
 <Footer />
+
+<style lang="scss">
+	main{
+		margin-top: calc(3.5rem * 2);
+	}
+</style>

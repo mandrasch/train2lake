@@ -3,8 +3,12 @@
 	// (see https://www.youtube.com/watch?v=n00qRGPfyCc)
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+
+	import { fade, fly } from 'svelte/transition';
+
 	// Simple SvelteKit Loading Spinner, thx to https://stackoverflow.com/a/70417253
 	import { navigating } from '$app/stores';
+	import { Jumper } from 'svelte-loading-spinners';
 
 	import PostCards from '../../components/PostCards.svelte';
 	import PostPagination from '../../components/PostPagination.svelte';
@@ -34,7 +38,7 @@
 
 	// Receive events from child components
 	// https://svelte.dev/tutorial/component-events
-    // (https://www.donielsmith.com/blog/2020-04-21-props-vs-event-dispatcher-svelte-3/)
+	// (https://www.donielsmith.com/blog/2020-04-21-props-vs-event-dispatcher-svelte-3/)
 	// TODO: add correct type, couldn't find it directly
 	// @ts-ignore
 	function handlePaginationMessage(event) {
@@ -50,22 +54,19 @@
 </script>
 
 <div class="container" style="margin-top:50px;">
+	<!-- TODO: Show loading spinner? -->
 
-    <!-- TODO: Show loading spinner? -->
-	{#if $navigating}
-		Lade Daten ...
-	{/if}
+	<!-- TODO: Move to own component -->
 
-    <!-- TODO: Move to own component -->
+	<div class="filter-toolbar" in:fade out:fade>
+		<select aria-label="Federal State">
+			<option>Federal state</option>
+			<option>Kärnten</option>
+		</select>
+		<input type="search" aria-label="Search" />
+		<button>Random</button>
 
-    <select aria-label="Federal State">
-        <option>All</option>
-        <option>Kärnten</option>
-    </select>
-
-    <input type="search" aria-label="Search">
-
-    <button>Random</button>
+	</div>
 
 	<PostCards posts={data.posts} />
 
@@ -76,5 +77,18 @@
 	.hero-title {
 		font-size: 1.5rem;
 		font-weight: bold;
+	}
+
+	.filter-toolbar {
+		display: flex;
+		flex-direction: row;
+
+		& > * {
+			margin: 5px 10px;
+		}
+
+		&__loading-spinner{
+			min-width:60px;
+		}
 	}
 </style>

@@ -39,13 +39,16 @@ npm i -D @picocss/pico sass svelte-preprocess
 
 # Gutenberg styles:
 npm i -D @wordpress/block-library --save
+
+# Loading spinner:
+npm i --D svelte-loading-spinners
 ```
 
 ## Deployment
 
 - Add `.env` values on Vercel
 
-## Acknowledgements
+## Acknowledgements / Resources used
 
 Inspired by Bahn zum Berg, check out zuugle.at as well!
 

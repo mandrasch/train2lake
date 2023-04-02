@@ -1,44 +1,49 @@
 <script>
 	import { base } from '$app/paths';
+	import { fade, fly } from 'svelte/transition';
+	import HeroGrid from '../components/HeroGrid.svelte';
+
+
 </script>
 
-<div
-	class="image-container"
-	style="background-image: url('{base}/images/oebb_train_to_stainach_irding.jpg')"
->
-	<div class="hero-cta">
-		<p class="hero-title">Explore awesome destinations by public train and bus in Austria</p>
-		<a class="hero-button" role="button" href="{base}/destinations">Take me to the lakes!</a>
-	</div>
-</div>
+<HeroGrid></HeroGrid>
+
+
+
 
 <style lang="scss">
+	
 	.image-container {
-		max-width:1750px;
-		margin:0 auto;
+		max-width: 1325px;
+		margin: 115px auto 0px auto;
 		position: relative;
-		height: 80vh;
+		//height: calc(100vh - 3.5rem);
+		height: calc(80vh - 3.5rem);
 		background-size: cover;
 		background-position: right;
+		border: 2px solid var(--secondary);
+
+		@media screen and (prefers-reduced-motion: no-preference) {
+			// TODO: Check browser support
+			transition: background-image 1.5s ease-out;
+		}
 	}
-	.hero-cta {
+	/*.hero-cta {
 		position: absolute;
-		right: 5%;
-		bottom: 5%;
+		right: 8%;
+		bottom: 8%;
 		padding: 20px;
 		background: white;
 		text-align: right;
-		background-color:rgba(255,255,255,0.85);
-		max-width:350px;
+		background-color: rgba(255, 255, 255, 0.85);
+		max-width: 350px;
+		border: 3px solid transparent;
 
-		.hero-title {
-			margin-top: 20px;
-			font-size: 1.4rem;
-			font-weight: bold;
-			text-align: center;
+		&:hover {
+			text-decoration: none;
 		}
-		.hero-button{
-			width:100%;
+		&:focus {
+			border: 3px solid var(--primary);
 		}
-	}
+	}*/
 </style>

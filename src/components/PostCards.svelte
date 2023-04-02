@@ -12,10 +12,15 @@
 
 	<div class="posts">
 		{#each posts as post, index (post.id)}
-			<!-- Too many preloads were triggered https://kit.svelte.dev/docs/link-options -->
+			<!-- 
+				Too many preloads were triggered by hover,
+				therefore we only use preload on tap by now
+				(https://kit.svelte.dev/docs/link-options)
+			 -->
 			<a
 				data-sveltekit-preload-data="tap"
 				href={'/destinations/' + post.slug}
+				in:fade
 				out:fade 
 			>
 				<div class="card">
@@ -125,6 +130,10 @@
 		@include mediaBig {
 			width: 55%;
 			padding-left: 40px;
+		}
+		p{
+			margin-top:5px;
+			color: var(--secondary);
 		}
 	}
 
