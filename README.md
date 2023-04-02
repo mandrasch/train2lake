@@ -2,7 +2,9 @@
 
 SvelteKit demo site for headless CMS setup with WP + WP REST API. Just for learning / demo purposes.
 
-TODO: Screenshot
+![Screenshot of website](screenshot1.png?raw=true)
+
+Live: https://train2lake.vercel.app/
 
 ## Local setup
 
@@ -54,4 +56,4 @@ Inspired by Bahn zum Berg, check out zuugle.at as well!
 
 ## License
 
-Fork of https://github.com/mandrasch/sveltekit-headless-wp-rest-demo.
+Fork of my project https://github.com/mandrasch/sveltekit-headless-wp-rest-demo.
