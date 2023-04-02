@@ -37,18 +37,19 @@
 	.pagination {
 		display: flex;
 		flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-top:50px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 50px;
 
-    button{
-      width:auto;
-      min-width:100px;
-    }
+		button {
+			width: auto;
+			min-width: 100px;
+			margin-bottom: 0px;
+		}
 
-    &__page-stats{
-      min-width:100px;
-      text-align: center;
-    }
+		&__page-stats {
+			min-width: 100px;
+			text-align: center;
+		}
 	}
 </style>

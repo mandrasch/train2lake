@@ -6,10 +6,6 @@
 
 	import { fade, fly } from 'svelte/transition';
 
-	// Simple SvelteKit Loading Spinner, thx to https://stackoverflow.com/a/70417253
-	import { navigating } from '$app/stores';
-	import { Jumper } from 'svelte-loading-spinners';
-
 	import PostCards from '../../components/PostCards.svelte';
 	import PostPagination from '../../components/PostPagination.svelte';
 	/** @type {import('./$types').PageData} */
@@ -64,8 +60,7 @@
 			<option>Kärnten</option>
 		</select>
 		<input type="search" aria-label="Search" />
-		<button>Random</button>
-
+		<button>Random Lake</button>
 	</div>
 
 	<PostCards posts={data.posts} />
@@ -87,8 +82,8 @@
 			margin: 5px 10px;
 		}
 
-		&__loading-spinner{
-			min-width:60px;
+		&__loading-spinner {
+			min-width: 60px;
 		}
 	}
 </style>

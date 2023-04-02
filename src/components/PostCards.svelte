@@ -1,7 +1,7 @@
 <script>
 	import { PUBLIC_WP_REST_API_DOMAIN } from '$env/static/public';
 	import { base } from '$app/paths';
-	import { fade,fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	// TODO: Add full jsdoc / typescript type checking
 	/** @type {Array<any>}; */
 	export let posts;
@@ -9,7 +9,6 @@
 
 <!-- TODO: How to properly implement this in a fail safe way? -->
 {#if posts && posts.length > 0}
-
 	<div class="posts">
 		{#each posts as post, index (post.id)}
 			<!-- 
@@ -17,12 +16,7 @@
 				therefore we only use preload on tap by now
 				(https://kit.svelte.dev/docs/link-options)
 			 -->
-			<a
-				data-sveltekit-preload-data="tap"
-				href={'/destinations/' + post.slug}
-				in:fade
-				out:fade 
-			>
+			<a data-sveltekit-preload-data="tap" href={'/destinations/' + post.slug} in:fade out:fade>
 				<div class="card">
 					<!-- TODO: use responsive image sizes -->
 					<!-- TODO: get alt text from REST API! -->
@@ -82,15 +76,27 @@
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
 
-		min-height:75vh;
+		//min-height: 75vh;
 
 		@include mediaBig {
 			grid-template-columns: repeat(1, 1fr);
 		}
 	}
 
-	a:hover {
-		text-decoration: none;
+	// the link element around the card
+	a {
+		&:hover {
+			text-decoration: none;
+		}
+		&:focus {
+			background-color: transparent !important; // remove default focus style by picocss
+		}
+		&:hover,
+		&:focus {
+			.card {
+				border: 2px solid var(--primary);
+			}
+		}
 	}
 
 	.card {
@@ -102,6 +108,8 @@
 		margin: 20px;
 		display: flex;
 		flex-direction: column;
+		border: 2px solid transparent;
+		transition: border-color 0.6s ease-in;
 
 		@include mediaBig {
 			flex-direction: row;
@@ -131,8 +139,8 @@
 			width: 55%;
 			padding-left: 40px;
 		}
-		p{
-			margin-top:5px;
+		p {
+			margin-top: 5px;
 			color: var(--secondary);
 		}
 	}

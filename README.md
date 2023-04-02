@@ -46,7 +46,7 @@ npm i --D svelte-loading-spinners
 
 ## Deployment
 
-- Add `.env` values on Vercel
+- Add `.env` values on Vercel (https://vercel.com/docs/concepts/projects/environment-variables)
 
 ## Acknowledgements / Resources used
 
@@ -55,4 +55,3 @@ Inspired by Bahn zum Berg, check out zuugle.at as well!
 ## License
 
 Fork of https://github.com/mandrasch/sveltekit-headless-wp-rest-demo.
-
