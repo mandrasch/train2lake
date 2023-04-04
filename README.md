@@ -14,7 +14,7 @@ npm install
 npm run dev -- --open
 ```
 
-⚠️ Content is fetched from my WordPress demo backend XXX. Please use your own backend if you run big tests. The backend API URL can be configured in `.env`-file.
+⚠️ Content is fetched from my personal WordPress demo backend. Please use your own backend if you run big tests. The backend API URL can be configured in `.env`-file. ⚠️
 
 ## Local backend instead of live site (optional)
 
@@ -24,6 +24,8 @@ Setup your own local WordPress, e.g. with DDEV. See for example https://github.c
 # .env
 PUBLIC_WP_REST_API_DOMAIN=https://sveltekit-headless-wp-rest-demo.ddev.site
 ```
+
+- [ ] Publish backend code as well (WIP)
 
 ## How was this created?
 
