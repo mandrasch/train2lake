@@ -14,7 +14,7 @@
 	<!-- TODO: add more SEO tags, e.g. from YOAST or SlimSEO-->
 </svelte:head>
 
-<!-- TODO: How to properly implement this in a fail-safe way? -->
+<!-- TODO: Improve robust treatment of not-existent values -->
 <div class="gutenberg-wrapper-container">
 	<div class="gutenberg-wrapper-container__title">
 		<h2>{entry.title.rendered}</h2>

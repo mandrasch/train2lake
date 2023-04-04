@@ -7,7 +7,7 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 
-	// TODO: this should only accept a number, how to check?
+	// TODO: this should only accept a number
 	/**
 	 * @param {number | string} newPageToNavigate
 	 */
@@ -25,8 +25,6 @@
 	>
 
 	<span class="pagination__page-stats">{paginationData.page} / {paginationData.totalPages}</span>
-
-	<!-- <span class="page-stats">{paginationData.from} - {paginationData.to} of {paginationData.total}</span>-->
 
 	<button on:click={() => changePage(paginationData.nextPage)} disabled={nextBtnDisabled}
 		>Next</button

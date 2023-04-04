@@ -52,8 +52,7 @@
 <div class="container" style="margin-top:50px;">
 	<!-- TODO: Show loading spinner? -->
 
-	<!-- TODO: Move to own component -->
-
+	<!-- TODO: Move to own component, implement it -->
 	<div class="filter-toolbar" in:fade out:fade>
 		<select aria-label="Federal State">
 			<option>Federal state</option>
@@ -69,21 +68,12 @@
 </div>
 
 <style lang="scss">
-	.hero-title {
-		font-size: 1.5rem;
-		font-weight: bold;
-	}
-
 	.filter-toolbar {
 		display: flex;
 		flex-direction: row;
 
 		& > * {
 			margin: 5px 10px;
-		}
-
-		&__loading-spinner {
-			min-width: 60px;
 		}
 	}
 </style>
